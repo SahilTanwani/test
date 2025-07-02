@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import axios from "axios";
 import styles from "./result.module.css";
 import Navbar from "../components/NavBar";
