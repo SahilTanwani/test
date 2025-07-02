@@ -57,7 +57,7 @@ export default function Input() {
       // ✅ Save input for reuse (for "Generate Again")
       localStorage.setItem("planGenieInput", JSON.stringify(inputData));
 
-      const response = await axios.post("http://localhost:5000/api/roadmaps/generate", inputData);
+      const response = await axios.post("https://test-backend-eight-iota.vercel.app/api/roadmaps/generate", inputData);
 
       console.log("✅ Got roadmap from backend:", response.data);
       const roadmapStr = response.data.roadmap;
