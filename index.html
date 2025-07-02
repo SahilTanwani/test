@@ -9,5 +9,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+  async function handleGoogleLogin(response) {
+    const token = response.credential;
+
+    const res = await fetch("https://test-backend-eight-iota.vercel.app/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ token })
+    });
+
+    const user = await res.json();
+    console.log("✅ Logged in user:", user);
+  }
+</script>
   </body>
 </html>

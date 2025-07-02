@@ -31,7 +31,7 @@ export default function AuthModal({ onClose, onLoginSuccess }) {
       const decoded = jwtDecode(credentialResponse.credential);
       const { email, name, sub: googleId } = decoded;
 
-      const res = await fetch("http://localhost:5000/api/users/google", {
+      const res = await fetch("https://test-backend-eight-iota.vercel.app/api/users/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, googleId }),
