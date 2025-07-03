@@ -17,11 +17,11 @@ export default function Profile() {
 
     const fetchUserData = async () => {
       try {
-        const userRes = await axios.get(`http://localhost:5000/api/users/${userId}`);
+        const userRes = await axios.get(`https://test-backend-eight-iota.vercel.app/api/users/${userId}`);
         setUser(userRes.data);
         setEditableUser(userRes.data);
 
-        const planRes = await axios.get(`http://localhost:5000/api/roadmaps/user/${userId}`);
+        const planRes = await axios.get(`https://test-backend-eight-iota.vercel.app/api/roadmaps/user/${userId}`);
         setPlans(planRes.data.reverse()); // newest first
       } catch (err) {
         console.error("❌ Failed to fetch profile data:", err);
@@ -38,7 +38,7 @@ export default function Profile() {
   const handleSave = async () => {
     const userId = localStorage.getItem("userId");
     try {
-      await axios.put(`http://localhost:5000/api/users/${userId}`, editableUser);
+      await axios.put(`https://test-backend-eight-iota.vercel.app/api/users/${userId}`, editableUser);
       setUser(editableUser);
       setEditMode(false);
     } catch (err) {
