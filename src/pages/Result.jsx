@@ -15,8 +15,13 @@ export default function Result() {
   const [loadingRegen, setLoadingRegen] = useState(false);
 
   useEffect(() => {
-    const roadmap = location.state?.roadmap || localStorage.getItem("roadmap");
-    if (!roadmap) return;
+    console.log("location.state:", location.state);
+    console.log("localStorage roadmap:", localStorage.getItem("roadmap"));
+    if (!roadmap) {
+    alert("No roadmap found. Please generate one.");
+    navigate("/");
+    return;
+  }
     const weekChunks = roadmap.split(/(?=Week \d+:)/g).map((w) => w.trim());
     setWeeks(weekChunks);
   }, [location.state]);
@@ -34,7 +39,7 @@ export default function Result() {
     if (!userId) return alert("User not logged in.");
     const roadmapText = weeks.join("\n\n");
     try {
-      await axios.post("http://localhost:5000/api/roadmaps", {
+      await axios.post("https://test-backend-eight-iota.vercel.app/api/roadmaps", {
         userId,
         content: roadmapText,
       });
@@ -70,7 +75,7 @@ export default function Result() {
 
     setLoadingRegen(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/roadmaps/generate", savedInput);
+      const res = await axios.post("https://test-backend-eight-iota.vercel.app/api/roadmaps/generate", savedInput);
       const roadmapStr = res.data.roadmap;
       const weekChunks = roadmapStr.split(/(?=Week \d+:)/g).map((w) => w.trim());
       localStorage.setItem("roadmap", roadmapStr);
